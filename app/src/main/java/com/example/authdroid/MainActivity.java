@@ -28,9 +28,6 @@ public class MainActivity extends AppCompatActivity {
     Button videoButton;
     FloatingActionButton cameraButton;
 
-    /*Uri imageUri;
-    ContentValues values;*/
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,12 +56,7 @@ public class MainActivity extends AppCompatActivity {
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*values = new ContentValues();
-                values.put(MediaStore.Images.Media.TITLE,"New picture");
-                values.put(MediaStore.Images.Media.DESCRIPTION,"From your camera");
-                imageUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);*/
                 Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                /*intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);*/
                 startActivityForResult(intent, CAMERA_REQUEST);
             }
         });
@@ -72,8 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Bitmap selectedphoto = null;
-        Bitmap selectedvideo = null;
         Bitmap camera = null;
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -84,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
             cursor.moveToFirst();
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String filePath = cursor.getString(columnIndex);
-            selectedphoto = BitmapFactory.decodeFile(filePath);
             cursor.close();
             Intent intent = new Intent(MainActivity.this, photoAuthenticationActivity.class);
             intent.setData(selectedImage);
@@ -96,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
             cursor.moveToFirst();
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String filePath = cursor.getString(columnIndex);
-            selectedvideo = BitmapFactory.decodeFile(filePath);
             cursor.close();
             Intent intent = new Intent(MainActivity.this, videoAuthenticationActivity.class);
             intent.setData(selectedVideo);
@@ -106,18 +94,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, photoAuthenticationActivity.class);
             intent.putExtra("image", camera);
             startActivity(intent);
-
-            /*Uri photoTaken = data.getData();
-            String[] filePathColumn = {MediaStore.Video.Media.DATA};
-            Cursor cursor = getContentResolver().query(photoTaken, filePathColumn, null, null, null);
-            cursor.moveToFirst();
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String filePath = cursor.getString(columnIndex);
-            camera = BitmapFactory.decodeFile(filePath);
-            cursor.close();
-            Intent intent = new Intent(MainActivity.this, videoAuthenticationActivity.class);
-            intent.setData(photoTaken);
-            startActivity(intent);*/
         }
     }
 }
