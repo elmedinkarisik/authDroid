@@ -4,12 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -90,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
     Button videoButton;
     FloatingActionButton cameraButton;
 
+    /**
+     * Called when the activity is first created.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,6 +129,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, CAMERA_REQUEST);
             }
         });
+    }
+
+    /**
+     * Called when activity is started.
+     */
+    @Override
+    protected void onStart() {
+        super.onStart();
+        loadPreferences();
     }
 
     @Override
@@ -180,5 +196,33 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void loadPreferences() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        serviceEndpoint = preferences.getString("engine.endpoint", null);
+        Log.d("Preference-change", "serviceEndpoint:" + serviceEndpoint);
+        downSampleRate = Integer.parseInt(preferences.getString("downsample.rate", "1"));
+        Log.d("Preference-change", "downSampleRate:" + downSampleRate);
+        orgImgName = preferences.getString("capture.image.name", null);
+        orgVideoName = preferences.getString("capture.video.name", null);
+        Log.d("Preference-change", "orgImgName:" + orgImgName);
+        euclidTolerance = preferences.getString("euclid.tolerance", null);
+        Log.d("Preference-change", "euclidTolerance:" + euclidTolerance);
+
+        if (downSampleRate != null && !"".equals(downSampleRate)) {
+            bmpOpt = new BitmapFactory.Options();
+            bmpOpt.inSampleSize = downSampleRate;
+        }
+        if (orgImgName != null && !"".equals(orgImgName)) {
+            originalFile = new File(Environment.getExternalStorageDirectory(), orgImgName);
+            originalFile.deleteOnExit();
+        }
+
+        if (orgVideoName != null && !"".equals(orgVideoName)) {
+            originalVideo = new File(Environment.getExternalStorageDirectory(), orgVideoName);
+            originalVideo.deleteOnExit();
+        }
     }
 }
