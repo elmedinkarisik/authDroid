@@ -10,6 +10,9 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -95,5 +98,28 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("image", camera);
             startActivity(intent);
         }
+    }
+
+    /**
+     * Generates custom options menu from menu resource file.
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.settingsMenuItem: {
+                Intent setActivityIntent = new Intent(MainActivity.this, AppPreferenceActivity.class);
+                startActivity(setActivityIntent);
+            }
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

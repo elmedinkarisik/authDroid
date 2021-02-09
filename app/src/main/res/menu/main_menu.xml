@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/mainMenuGroup">
+        <item android:id="@+id/settingsMenuItem" android:title="Settings"></item>
+        <item android:id="@+id/helpMenuItem" android:title="Help"></item>
+    </group>
+</menu>

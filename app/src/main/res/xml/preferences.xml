@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+	<EditTextPreference android:dialogTitle="Engine endpoint"
+		android:key="engine.endpoint" android:title="Engine endpoint"
+		android:summary="Recognition service endpoint " android:dialogMessage="Enter recognition service URL" android:defaultValue="http://192.168.1.136:8080/auth-ws/services"></EditTextPreference>
+	<EditTextPreference android:dialogTitle="Euclid treshold"
+		android:key="euclid.tolerance" android:title="Euclid distance treshold"
+		android:dialogMessage="Enter Euclid tolerance (i.e. 10e+16)" android:summary="Enter tolerance ( i.e. 10e+16)" android:defaultValue="10e\+16"></EditTextPreference>
+	<ListPreference android:entryValues="@array/entry_values"
+		android:entries="@array/entries" android:dialogTitle="Downsample rate"
+		android:summary="Pick downsample rate" android:title="Image downsample rate" android:key="downsample.rate" android:defaultValue="1"></ListPreference>
+	<EditTextPreference android:dialogMessage="Enter captured image filename"
+		android:dialogTitle="Image filename" android:key="capture.image.name"
+		android:summary="Filename of captured image" android:title="Image filename" android:defaultValue="test.jpg"></EditTextPreference>
+	<EditTextPreference android:dialogMessage="Enter captured video filename"
+		android:dialogTitle="Video filename" android:key="capture.video.name"
+		android:summary="Filename of captured video" android:title="Video filename" android:defaultValue="test.m4v"></EditTextPreference>
+</PreferenceScreen>
