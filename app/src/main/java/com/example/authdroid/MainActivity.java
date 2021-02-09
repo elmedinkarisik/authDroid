@@ -17,12 +17,71 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.authdroid.util.SOAPClient;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
+    /**
+     * Tag used for logging
+     */
+    public static final String LOG_TAG = "DroidAuth";
+
+    /**
+     * Original file name
+     */
+    private String orgImgName;
+
+    private String orgVideoName;
+    /**
+     * Original image file
+     */
+    private File originalFile;
+
+    private File originalVideo;
+
+    /**
+     * Bitmap options
+     */
+    private BitmapFactory.Options bmpOpt;
+
+    /**
+     * Downsampling rate for every captured image;
+     */
+    private Integer downSampleRate;
+
+    /**
+     * A downsampled and compressed bitmap.
+     */
+    protected Bitmap mBitmap;
+
+    /**
+     * Image capturing intent result.
+     */
+    private static final int RESULT_CAPTURE_IMAGE = 0;
+
+    /**
+     * Sound recording intent result.
+     */
+    private static final int RESULT_RECORD_VIDEO = 1;
+
+    /**
+     * Simple SOAP client.
+     */
+    private SOAPClient client;
+
+    /**
+     * Service endpoint.
+     */
+    private String serviceEndpoint;
+
+    /**
+     * Euclid tolerance
+     */
+    private String euclidTolerance;
+
     private static final int PICK_IMAGE_REQUEST = 1;
     private static final int PICK_VIDEO_REQUEST = 2;
     private static final int CAMERA_REQUEST = 3;
