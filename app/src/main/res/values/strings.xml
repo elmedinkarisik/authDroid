@@ -4,4 +4,7 @@
     <string name="image">Image</string>
     <string name="video">Video</string>
     <string name="authenticationMethod">Choose an authentication method</string>
+    <string name="statusSucessfull">Access GRANTED!</string>
+    <string name="statusFail">Access DENIED!</string>
+    <string name="statusUnknown">Internal error!</string>
 </resources>
