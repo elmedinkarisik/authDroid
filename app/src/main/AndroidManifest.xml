@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.authdroid">
+    package="com.example.authdroid"
+    android:versionCode="1"
+    android:versionName="1.0">
 
     <application
         android:allowBackup="true"
@@ -11,7 +13,9 @@
         android:theme="@style/Theme.AuthDroid">
         <activity android:name=".videoAuthenticationActivity" />
         <activity android:name=".photoAuthenticationActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+                  android:screenOrientation="portrait"
+                  android:clearTaskOnLaunch="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
