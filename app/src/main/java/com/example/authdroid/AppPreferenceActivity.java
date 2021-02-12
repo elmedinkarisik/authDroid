@@ -9,7 +9,7 @@ public class AppPreferenceActivity  extends PreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(RR.xml.preferences);
+        addPreferencesFromResource(R.xml.preferences);
     }
 
 
