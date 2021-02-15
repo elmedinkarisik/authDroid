@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                  * In original app:
                  */
                 //useCamera(); // TODO: Uncomment to test on real device...
-                ////fakeProcessing();
+                //fakeProcessing();
             }
         });
 
@@ -162,8 +162,8 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Called after each intent with result exits. Used for camera and audio
      * recording intents.
-     *//*
-    @Override
+     */
+    /*@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
 
@@ -180,11 +180,11 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == RESULT_CAPTURE_IMAGE && resultCode == Activity.RESULT_OK) {
 
-            if (originalFile == null || !originalFile.exists()) {
+            *//*if (originalFile == null || !originalFile.exists()) {
                 Log.d(LOG_TAG, "Missing captured file...");
                 Toast.makeText(this, "Missing captured image file...", Toast.LENGTH_LONG).show();
                 return;
-            }
+            }*//*
 
             mBitmap = BitmapFactory.decodeFile(originalFile.getAbsolutePath(), bmpOpt);
             ImageView capImgView = (ImageView) findViewById(R.id.yourImageImageView);
